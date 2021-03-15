@@ -1,6 +1,7 @@
 """Question models"""
 from django.conf import settings
 from django.db import models
+from django.utils import timezone
 
 
 class QuestionCategory(models.Model):
@@ -57,5 +58,5 @@ class Question(models.Model):
 
     def save(self, *args, **kwargs):
         if not self._responder and self.responder:
-            self.responded_at = django.timezone.now()
+            self.responded_at = timezone.now()
         super(Question, self).save(*args, **kwargs)
