@@ -21,7 +21,7 @@ class QuestionCategory(models.Model):
 
 class Question(models.Model):
     """Question model"""
-    name = models.CharField(
+    question = models.CharField(
         "Question",
         max_length=500,
         blank=False,
@@ -50,3 +50,12 @@ class Question(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     responded_at = models.DateTimeField(blank=True, null=True)
+
+    def __init__(self, *args, **kwargs):
+        super(Question, self).__init__(*args, **kwargs)
+        self._responder = self.responder
+
+    def save(self, *args, **kwargs):
+        if not self._responder and self.responder:
+            self.responded_at = django.timezone.now()
+        super(Question, self).save(*args, **kwargs)
