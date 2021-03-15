@@ -1,0 +1,45 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#"><img src="{% static 'img/icon_logo.svg' %}" /></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav mr-auto">
+      <li 
+        {% if '/' == request.path %}
+          class="nav-item text-center active mr-3"
+        {% else %}
+          class="nav-item text-center mr-3"
+        {% endif %}
+      >
+        <a class="nav-link" href="{% url 'questions' %}">Preguntas</a>
+      </li>
+          
+      <li 
+        {% if '/reportes' == request.path %}
+          class="nav-item text-center active mr-3"
+        {% else %}
+          class="nav-item text-center mr-3"
+        {% endif %}
+      >
+        <a class="nav-link" href="{% url 'reports' %}">Reportes</a>
+      </li>
+    </ul>
+    <div class="my-2 my-lg-0">
+      
+      <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center">
+          {% if user.is_authenticated %}
+            {{user.first_name}} {{user.last_name}}
+            <a class="nav-link text-white" href="{% url 'logout' %}">
+              Cerrar Sesión
+            </a>
+          {% else %}
+            <a class="nav-link" href="{% url 'login' %}">
+              Iniciar Sesión
+            </a>
+          {% endif %}
+        </div>
+    </div>
+  </div>
+</nav>

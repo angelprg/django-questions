@@ -1,0 +1,18 @@
+
+.question_question{
+  font-size: 20px;
+  color: #373A3C;
+  font-weight: normal;
+}
+.question_metadata{
+  font-size: 14px;
+  color: #868E96;
+}
+
+.question_tag{
+  font-size: 12px;
+  font-weight: normal;
+  background-color: rgba(0,0,0,.125);
+  padding: 8px 16px;
+  border-radius: 11px;
+}
