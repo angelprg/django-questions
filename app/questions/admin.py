@@ -1,3 +1,11 @@
-# from django.contrib import admin
+from django.contrib import admin
 
-# Register your models here.
+from questions.models import Question, QuestionCategory
+
+
+@admin.register(Question)
+class QuestionAdmin(admin.ModelAdmin):
+    readonly_fields = ('created_at', )
+
+
+admin.site.register(QuestionCategory)

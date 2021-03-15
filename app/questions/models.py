@@ -19,6 +19,9 @@ class QuestionCategory(models.Model):
         null=True
         )
 
+    def __str__(self):
+        return f"{self.name}"
+
 
 class Question(models.Model):
     """Question model"""
@@ -60,3 +63,6 @@ class Question(models.Model):
         if not self._responder and self.responder:
             self.responded_at = timezone.now()
         super(Question, self).save(*args, **kwargs)
+
+    def __str__(self):
+        return f"({self.id}) {self.question[:15]}"
