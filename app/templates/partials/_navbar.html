@@ -1,6 +1,6 @@
 {% load static %}
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-  <a class="navbar-brand" href="#"><img src="{% static 'img/icon_logo.svg' %}" /></a>
+  <a class="navbar-brand" href="{% url 'questions' %}"><img src="{% static 'img/icon_logo.svg' %}" /></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -30,12 +30,12 @@
       
       <div class="d-flex flex-column flex-lg-row justify-content-center align-items-center">
           {% if user.is_authenticated %}
-            {{user.first_name}} {{user.last_name}}
-            <a class="nav-link text-white" href="{% url 'logout' %}">
+            <span class="text-white" >{{user.first_name}} {{user.last_name}}</span>
+            <a class="nav-link text-dark" href="{% url 'logout' %}">
               Cerrar Sesión
             </a>
           {% else %}
-            <a class="nav-link" href="{% url 'login' %}">
+            <a class="nav-link  text-dark" href="{% url 'login' %}">
               Iniciar Sesión
             </a>
           {% endif %}

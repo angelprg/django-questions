@@ -1,0 +1,19 @@
+{% if messages%}
+    {% for message in messages %}
+        <script>
+            
+            $( document ).ready(function() {
+                Swal.fire({
+                title: `{% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %} Error {% else %} {{ message.tags|title }} {% endif %}`,
+                html: `<ul>
+                    
+                        <alert>{{message}}</alert>
+                    
+                </ul>`,
+                icon: `{{ message.tags }}`,
+                confirmButtonText: 'Close'
+            })
+            });
+        </script>
+    {% endfor %}
+{% endif %}
