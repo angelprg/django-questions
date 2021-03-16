@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  | Agregar nueva pregunta
+{% endblock %}
+
+{% block content %}
+<section id="login" class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-body">
+                <form action="{% url 'question_add' %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="question">Pregunta:</label>
+                  <textarea name="question" class="form-control" required></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="category">Categoría</label>
+                  <select name="category" class="form-control" required>
+                    {% for category in categories %}
+                      <option value="{{category.id}}">{{category.name}}</option>
+                    {% endfor %}
+                  </select>
+                </div>
+
+                <input type="submit" value="Agregar pregunta" class="btn btn-primary btn-block">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}

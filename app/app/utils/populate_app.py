@@ -9,7 +9,7 @@ from app.factories import UserFactory, QuestionFactory, \
 FAKE = faker.Faker('es_MX')
 
 # Set defined categories and get existing ones.
-defined_categories = ["Técnica", "Legal", "Administrativa", "Económicas"]
+defined_categories = ["Técnica", "Legal", "Administrativa", "Económica"]
 existing_categories = [
     category.name for category in QuestionCategory.objects.all()
 ]

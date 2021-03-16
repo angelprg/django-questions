@@ -127,6 +127,8 @@ STATICFILES_DIRS = [
 ]
 
 AUTH_USER_MODEL = 'users.User'
+LOGIN_URL = '/user/login'
+
 
 MESSAGE_TAGS = {
     messages.ERROR: 'Error',

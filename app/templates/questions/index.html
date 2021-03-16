@@ -13,8 +13,8 @@
       <h1 class="d-inline-block">Preguntas</h1>
     </div>
     <div class="d-flex align-items-center">
-      <a class="d-none d-lg-block mr-2" href="#">Agregar Pregunta</a>
-      <a href="#">
+      <a class="d-none d-lg-block mr-2" href="{% url 'question_add' %}">Agregar Pregunta</a>
+      <a href="{% url 'question_add' %}">
         <img src="{% static 'img/icon_more.svg' %}" />
       </a>
     </div>
@@ -38,7 +38,12 @@
               </div>
               <div class="col-2">
                 {% if user.is_authenticated and user.email != question.author.email and not question.responder %}
-                  <div class="btn btn-primary">Responder</div>
+                  <a 
+                    class="btn btn-primary"
+                    href="{% url 'question_respond' question_id=question.id %}"
+                  >
+                    Responder
+                  </a>
                 {% endif %}
               </div>
             </div>

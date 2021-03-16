@@ -1,3 +1,5 @@
+
+import unidecode
 import factory
 import factory.django
 from factory.faker import faker
@@ -17,12 +19,13 @@ class UserFactory(factory.django.DjangoModelFactory):
     last_name = factory.LazyAttribute(lambda _: FAKE.last_name())
     email = factory.LazyAttribute(
         lambda a: '{}.{}@example.com'.format(
-            a.first_name,
-            a.last_name
+            unidecode.unidecode(a.first_name).replace(' ',''),
+            unidecode.unidecode(a.last_name).replace(' ',''),
             ).lower()
         )
-    # password = FAKE.sentence()
-    password = 'SuperPassword123'
+    # password = FAKE.password()
+    password = factory.PostGenerationMethodCall('set_password', 'SuperPassword123')
+    
 
 
 class QuestionWithResponseFactory(factory.django.DjangoModelFactory):

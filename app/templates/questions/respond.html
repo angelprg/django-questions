@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block title %}
+  | Agregar nueva pregunta
+{% endblock %}
+
+{% block content %}
+<section id="login" class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto">
+          <div class="card">
+            <div class="card-body">
+                <form action="{% url 'question_respond' question_id=question.id %}" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="question">Pregunta:</label>
+                  <div>{{question.question}}</div>
+                </div>
+                <div class="form-group">
+                  <label for="response">Respuesta:</label>
+                  <textarea name="response" class="form-control" required></textarea>
+                </div>
+                <input type="submit" value="Responder" class="btn btn-primary btn-block">
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  {% endblock %}
