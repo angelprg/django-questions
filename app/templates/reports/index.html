@@ -1,9 +1,74 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block title %}
-  | Reportes
+  | Estadísticas
 {% endblock %}
 
 {% block content %}
-    Reportes
+<div class="row my-3 my-lg-5">
+  <div class="col col-md-10 offset-md-1 d-flex justify-content-between">
+    <div class="d-flex">
+      <img src="{% static 'img/icn-statistics.svg' %}" />
+      <h1 class=" ml-3 d-inline-block">Estadísticas</h1>
+    </div>
+  </div>
+</div>
+<div class="row">
+
+  <div class="col col-lg-6">
+    <div class="card bg-light mb-3" >
+      <div class="card-header"><h4>Relación de preguntas con respuesta</h4></div>
+      <div class="card-body">
+        <div id="graph_responses"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col col-lg-6">
+    <div class="card bg-light mb-3" >
+      <div class="card-header"><h4>Preguntas por categoría</h4></div>
+      <div class="card-body">
+        <div id="graph_categories"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="card bg-light mb-3" >
+      <div class="card-header"><h4>Preguntas por día</h4></div>
+      <div class="card-body">
+        <div id="graph_days"></div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}
+
+{% block footer %}
+<script>
+  const response_ratio = {
+    Respondidas: {{questions_responded}},
+    Pendientes: {{questions_not_responded}},
+    };
+
+  const questions_by_category = {
+    {% for cat in questions_by_category %}
+        '{{cat.category__name}}': {{cat.is_responded}}+{{cat.is_not_responded}},
+    {% endfor %}
+  };
+
+  const questions_by_created = [
+    {% for day in questions_by_created %}
+      {
+        date: '{{day.created_at__date | date:"Y-m-d"}}',
+        is_responded: {{day.is_responded}},
+        is_not_responded: {{day.is_not_responded}}, 
+      },
+    {% endfor %}
+  ];
+  
+</script>
+  <script src="{% static 'js/graphs.js' %}"></script>
 {% endblock %}

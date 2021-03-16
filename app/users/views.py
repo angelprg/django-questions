@@ -17,6 +17,7 @@ def login(request):
 
     return render(request, 'users/login.html')
 
+
 def logout(request):
     """Logout view."""
     if request.user.is_authenticated:

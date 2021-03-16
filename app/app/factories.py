@@ -19,13 +19,15 @@ class UserFactory(factory.django.DjangoModelFactory):
     last_name = factory.LazyAttribute(lambda _: FAKE.last_name())
     email = factory.LazyAttribute(
         lambda a: '{}.{}@example.com'.format(
-            unidecode.unidecode(a.first_name).replace(' ',''),
-            unidecode.unidecode(a.last_name).replace(' ',''),
+            unidecode.unidecode(a.first_name).replace(' ', ''),
+            unidecode.unidecode(a.last_name).replace(' ', ''),
             ).lower()
         )
     # password = FAKE.password()
-    password = factory.PostGenerationMethodCall('set_password', 'SuperPassword123')
-    
+    password = factory.PostGenerationMethodCall(
+        'set_password',
+        'SuperPassword123'
+    )
 
 
 class QuestionWithResponseFactory(factory.django.DjangoModelFactory):
