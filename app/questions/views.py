@@ -76,7 +76,9 @@ def reports(request):
         ).annotate(is_not_responded=is_not_responded)
     questions_by_created = qs.values('created_at__date').annotate(
         is_responded=is_responded
-        ).annotate(is_not_responded=is_not_responded).order_by('-created_at__date')
+        ).annotate(is_not_responded=is_not_responded).order_by(
+            '-created_at__date'
+            )
 
     questions_responded = qs.filter(responder_id__isnull=False).count()
     questions_not_responded = qs.filter(responder_id__isnull=True).count()
