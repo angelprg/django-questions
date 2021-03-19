@@ -19,7 +19,7 @@ Anybody can:
 - D3.js
 
 ## Demo Page:
-`http://104.197.84.217:8000/`
+`http://104.197.84.217`
 Deploy on Compute Engine (Google Cloud Platform)
 
 ## Local Setup:
